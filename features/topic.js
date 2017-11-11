@@ -2,7 +2,7 @@ let { defineSupportCode } = require('cucumber');
 let assert = require('assert');
 defineSupportCode(function ({ Given, When, Then }) {
     Given('用户登录,用户名输入{string},密码输入{string},成功登录', function (string, string2) {
-        this.driver.get('http://192.168.75.107:3000/');
+        this.driver.get('http://118.31.19.120:3000/');
         this.driver.findElement({ css: 'ul > li:nth-child(6) > a' }).click();
         this.driver.findElement({ id: 'name' }).sendKeys(string);
         this.driver.findElement({ id: 'pass' }).sendKeys(string2);
