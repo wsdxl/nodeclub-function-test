@@ -2,10 +2,10 @@ module.exports={
     email:{
         id:'email'
     },
-    successInfo:{
-        css:'strong'
+    submit:{
+        css: '.span-primary'
     },
-    errorInfo:{
+    messageInfo:{
         css:'strong'
     }
 }

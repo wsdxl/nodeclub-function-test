@@ -37,9 +37,9 @@ let userLogin = async function (driver, username, password, message, status) {
 }
 
 let userForget = async function (driver, email, message) {
-    await driver.findElement({ id: 'email' }).sendKeys(email);
-    driver.findElement({ css: '.span-primary' }).click();
-    let text4 = await driver.findElement({ css: 'strong' }).getText();
+    await driver.findElement(forgetPage.email).sendKeys(email);
+    driver.findElement(forgetPage.submit).click();
+    let text4 = await driver.findElement(forgetPage.messageInfo).getText();
     return assert.deepEqual(text4, message);
 }
 
