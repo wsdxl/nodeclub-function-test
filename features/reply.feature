@@ -22,7 +22,7 @@ Feature: reply  function test
         Then 点击照片输入路径'<path>',输入内容'<content>',点击回帖按钮，成功或者失败'<status>',回帖成功，页面含有'<successMsg>'回帖失败，得到错误提示'<errorMsg>'
         Examples:
         |path|content|status|successMsg|errorMsg|
-        |E://01.png|你是最棒的！|success|1 回复||
+        |E://01.png|你是最棒的！|success|你是最棒的！||
         |null||error||回复内容不能为空!|
 
     

@@ -2,7 +2,8 @@ let assert = require('assert');
 let loginPage = require('../comm/loginPage');
 let registerPage = require('../comm/registerPage');
 let forgetPage = require('../comm/forgetPage');
-let topicPage=require('../comm/topicPage');
+let topicPage = require('../comm/topicPage');
+let replyPage=require('../comm/replyPage');
 let userRegister = async function (driver, username, pass, repass, email, message, status) {
     await driver.findElement(registerPage.pass).sendKeys(pass);
     await driver.findElement(registerPage.repass).sendKeys(repass);
@@ -86,11 +87,31 @@ let userTopic = async function (driver, tab, title, path, content, status, error
     }
 }
 
+let userReply = async function (driver, path, content, status, successMsg, errorMsg) {
+    driver.executeScript('document.querySelector("#reply_form .CodeMirror-scroll").scrollIntoView();');
+    if (path !== "null") {
+        driver.findElement(replyPage.image).click();
+        driver.findElement(replyPage.imagePath).sendKeys(path);
+        driver.sleep(2 * 1000);
+        driver.findElement(replyPage.content).click();
+        let text = await driver.findElement(replyPage.contentEditor);
+        driver.actions().mouseMove(text).sendKeys(content).perform();
+        driver.findElement(replyPage.replyBtn).click();
+        if (status == "success") {
+            let text2 = await driver.findElement(replyPage.successMsg).getText();
+            return assert.deepEqual(text2, successMsg);
+        } else {
+            let text3 = await driver.findElement(replyPage.errorMsg).getText();
+            return assert.deepEqual(text3, errorMsg);
+        }
+    }
+}
 
 
 
 exports.userRegister = userRegister;
 exports.userLogin = userLogin;
 exports.userForget = userForget;
-exports.userTopic=userTopic;
+exports.userTopic = userTopic;
+exports.userReply = userReply
 

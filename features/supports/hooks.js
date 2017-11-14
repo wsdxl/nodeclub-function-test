@@ -4,6 +4,6 @@ defineSupportCode(function ({ Before, After }) {
         await this.driver.manage().window().maximize();
     })
     After(async function () {
-        // await this.driver.quit();
+        await this.driver.quit();
     })
 })
