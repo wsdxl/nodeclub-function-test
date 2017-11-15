@@ -1,6 +1,6 @@
 let { defineSupportCode } = require('cucumber');
 let assert = require('assert');
-let action = require('../uiAction/action');
+let action = require('../../uiAction/action');
 defineSupportCode(function ({ Given, When, Then }) {
     When('导航到回帖页面', function () {
         return this.driver.findElement({ css: '#topic_list > div:nth-child(1) > div > a' }).click();

@@ -1,0 +1,124 @@
+[
+  {
+    "description": "    注册不同场景的功能测试\n    author:杜小磊\n    date:2017-11-04",
+    "keyword": "Feature",
+    "name": "register function test",
+    "line": 2,
+    "id": "register-function-test",
+    "tags": [
+      {
+        "name": "@register",
+        "line": 1
+      }
+    ],
+    "uri": "features\\register.feature",
+    "elements": [
+      {
+        "id": "register-function-test;输入正确的注册信息，成功登录",
+        "keyword": "Scenario",
+        "line": 27,
+        "name": "输入正确的注册信息，成功登录",
+        "tags": [
+          {
+            "name": "@register",
+            "line": 1
+          },
+          {
+            "name": "@register3",
+            "line": 26
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "features\\supports\\hooks.js:3"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1355
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "进入首页",
+            "match": {
+              "location": "Definitions\\register.js:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8938
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 28,
+            "name": "导航到注册页面",
+            "match": {
+              "location": "Definitions\\register.js:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 365
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 29,
+            "name": "用户名输入'123457',密码输入'123123',确认密码输入'123123',邮箱输入'123456@qq.com',点击提交按钮，注册成功，提示,'欢迎加入 Nodeclub！我们已给您的注册邮箱发送了一封邮件，请点击里面的链接来激活您的帐号。'",
+            "match": {
+              "location": "Definitions\\register.js:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1171
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 30,
+            "name": "链接数据库，激活邮箱",
+            "match": {
+              "location": "Definitions\\register.js:30"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 31,
+            "name": "用刚才输出的密码'123123'可以成功登录",
+            "match": {
+              "location": "Definitions\\register.js:42"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1101
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "features\\supports\\hooks.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 50
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

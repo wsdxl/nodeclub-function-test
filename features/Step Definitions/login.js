@@ -1,6 +1,6 @@
 let { defineSupportCode } = require('cucumber');
 let assert = require('assert');
-let action=require('../uiAction/action');
+let action=require('../../uiAction/action');
 defineSupportCode(function ({ Given, When, Then }) {
     When('点击登录按钮，跳转到登录页面，登录页面左上角有{string}标签', async function (string) {
         this.driver.findElement({ css: ' li:nth-child(6) > a' }).click();

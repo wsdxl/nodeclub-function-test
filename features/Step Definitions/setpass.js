@@ -1,6 +1,6 @@
 let { defineSupportCode } = require('cucumber');
 let assert = require('assert');
-let action = require('../uiAction/action');
+let action = require('../../uiAction/action');
 defineSupportCode(function ({ Given, When, Then }) {
     When('导航到更改密码页面', function () {
         this.driver.findElement({ css: 'li:nth-child(6) > a' }).click();

@@ -1,11 +1,12 @@
 let { defineSupportCode } = require('cucumber');
-let action = require('../uiAction/action');
+let action = require('../../uiAction/action');
 let assert = require('assert');
 let MongoClient = require('mongodb').MongoClient;
-let url = "mongodb://118.31.19.120:27017/node_club_dev";
+let app = require('../../app.confifg');
+// let url = "mongodb://118.31.19.120:27017/node_club_dev";
 defineSupportCode(function ({ Given, When, Then }) {
     Given('进入首页', function () {
-        return this.driver.get('http://118.31.19.120:3000/');
+        return this.driver.get(app.baseUrl);
     });
     When('点击注册按钮，跳转到注册页面，注册页面左上角有{string}标签', async function (string) {
         this.driver.findElement({ css: ' div.navbar > div > div > ul > li:nth-child(5) > a' }).click();
@@ -27,7 +28,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         return action.userRegister(this.driver, string, string2, string3, string4, string5, 'error');
     });
     Then('链接数据库，激活邮箱', function () {
-        MongoClient.connect(url, function (err, db) {
+        MongoClient.connect(app.mongodbUrl, function (err, db) {
             assert.equal(null, err);
             console.log("Connected correctly to server");
             let collection = db.collection("users")
@@ -39,7 +40,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         });
     });
     Then('用刚才输出的密码{string}可以成功登录', async function (string) {
-        await this.driver.get("http://118.31.19.120:3000/signin");
+        await this.driver.get(app.baseUrl+"signin");
         return action.userLogin(this.driver, `${registerUserName}`, string, `${registerUserName}`);
     });
 })
