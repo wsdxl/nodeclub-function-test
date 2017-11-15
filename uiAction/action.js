@@ -4,7 +4,9 @@ let registerPage = require('../comm/registerPage');
 let forgetPage = require('../comm/forgetPage');
 let topicPage = require('../comm/topicPage');
 let replyPage = require('../comm/replyPage');
-let setpassPage=require('../comm/setpassPage');
+let setpassPage = require('../comm/setpassPage');
+let { getImageFilesPath } = require('../uiAction/util');
+let path = require('path');
 let userRegister = async function (driver, username, pass, repass, email, message, status) {
     await driver.findElement(registerPage.pass).sendKeys(pass);
     await driver.findElement(registerPage.repass).sendKeys(repass);
@@ -45,7 +47,7 @@ let userForget = async function (driver, email, message) {
     return assert.deepEqual(text4, message);
 }
 
-let userTopic = async function (driver, tab, title, path, content, status, errormsg) {
+let userTopic = async function (driver, tab, title, imageFileName, content, status, errormsg) {
     switch (tab) {
         case "请选择":
             driver.findElement(topicPage.select).click();
@@ -64,9 +66,10 @@ let userTopic = async function (driver, tab, title, path, content, status, error
             break;
     }
     await driver.findElement(topicPage.title).sendKeys(title);
-    if (path !== "null") {
+    if (imageFileName !== "null") {
+        let imagepath = path.join(getImageFilesPath(), imageFileName);
         await driver.findElement(topicPage.image).click();
-        await driver.findElement(topicPage.imagePath).sendKeys(path);
+        await driver.findElement(topicPage.imagePath).sendKeys(imagepath);
         await driver.sleep(2 * 1000);
     }
     await driver.findElement(topicPage.content).click();
@@ -88,11 +91,12 @@ let userTopic = async function (driver, tab, title, path, content, status, error
     }
 }
 
-let userReply = async function (driver, path, content, status, successMsg, errorMsg) {
+let userReply = async function (driver, imageFileName, content, status, successMsg, errorMsg) {
     driver.executeScript('document.querySelector("#reply_form .CodeMirror-scroll").scrollIntoView();');
-    if (path !== "null") {
+    if (imageFileName !== "null") {
+        let imagepath = path.join(getImageFilesPath(), imageFileName); 
         driver.findElement(replyPage.image).click();
-        driver.findElement(replyPage.imagePath).sendKeys(path);
+        driver.findElement(replyPage.imagePath).sendKeys(imagepath);
         driver.sleep(2 * 1000);
         driver.findElement(replyPage.content).click();
         let text = await driver.findElement(replyPage.contentEditor);
@@ -138,5 +142,5 @@ exports.userLogin = userLogin;
 exports.userForget = userForget;
 exports.userTopic = userTopic;
 exports.userReply = userReply;
-exports.setPass=setPass
+exports.setPass = setPass
 

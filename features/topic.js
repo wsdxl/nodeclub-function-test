@@ -17,14 +17,14 @@ defineSupportCode(function ({ Given, When, Then }) {
     When('导航到发帖页面', function () {
         return this.driver.findElement({ css: '#create_topic_btn > span' }).click();
     });
-    let tab,title,path,content;
+    let tab,title,imageFileName,content;
     Then('板块选择{string},标题输入{string},点击照片输入路径{string} ，输入内容{string}', async function (string, string2, string3, string4) {
         tab=string;
         title=string2;
-        path=string3;
+        imageFileName=string3;
         content=string4;
     });
     Then('点击提交按钮,成功或者失败{string}.成功跳转到首页，得到新的标题，失败得到错误提示{string}', async function (string, string2) {
-        return action.userTopic(this.driver,tab,title,path,content,string,string2);
+        return action.userTopic(this.driver,tab,title,imageFileName,content,string,string2);
     });
 })
