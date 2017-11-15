@@ -3,7 +3,8 @@ let loginPage = require('../comm/loginPage');
 let registerPage = require('../comm/registerPage');
 let forgetPage = require('../comm/forgetPage');
 let topicPage = require('../comm/topicPage');
-let replyPage=require('../comm/replyPage');
+let replyPage = require('../comm/replyPage');
+let setpassPage=require('../comm/setpassPage');
 let userRegister = async function (driver, username, pass, repass, email, message, status) {
     await driver.findElement(registerPage.pass).sendKeys(pass);
     await driver.findElement(registerPage.repass).sendKeys(repass);
@@ -107,11 +108,35 @@ let userReply = async function (driver, path, content, status, successMsg, error
     }
 }
 
+let setPass = async function (driver, pass, repass, status, sucMsg, errorMsg) {
+    driver.executeScript(function () {
+        'document.querySelector("#old_pass").scrollIntoView();'
+    })
+    if (status !== 'null') {
+        driver.findElement(setpassPage.pass).sendKeys(pass);
+        driver.findElement(setpassPage.repass).sendKeys(repass);
+        driver.findElement(setpassPage.Button).click();
+        if (status == 'success') {
+            let text = await driver.findElement(setpassPage.message).getText();
+            return assert.deepEqual(text, sucMsg);
+        } else {
+            let text = await driver.findElement(setpassPage.message).getText();
+            return assert.deepEqual(text, errorMsg);
+        }
+
+    } else {
+        driver.findElement(setpassPage.Button).click();
+        let text1 = await driver.findElement(setpassPage.msg).getText();
+        return assert.deepEqual(text1, errorMsg);
+    }
+}
+
 
 
 exports.userRegister = userRegister;
 exports.userLogin = userLogin;
 exports.userForget = userForget;
 exports.userTopic = userTopic;
-exports.userReply = userReply
+exports.userReply = userReply;
+exports.setPass=setPass
 
