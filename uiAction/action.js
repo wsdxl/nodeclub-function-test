@@ -6,6 +6,8 @@ let topicPage = require('../comm/topicPage');
 let replyPage = require('../comm/replyPage');
 let setpassPage = require('../comm/setpassPage');
 let { getImageFilesPath } = require('../uiAction/util');
+let MongoClient = require('mongodb').MongoClient;
+let app = require('../app.confifg');
 let path = require('path');
 let userRegister = async function (driver, username, pass, repass, email, message, status) {
     await driver.findElement(registerPage.pass).sendKeys(pass);
@@ -94,7 +96,7 @@ let userTopic = async function (driver, tab, title, imageFileName, content, stat
 let userReply = async function (driver, imageFileName, content, status, successMsg, errorMsg) {
     driver.executeScript('document.querySelector("#reply_form .CodeMirror-scroll").scrollIntoView();');
     if (imageFileName !== "null") {
-        let imagepath = path.join(getImageFilesPath(), imageFileName); 
+        let imagepath = path.join(getImageFilesPath(), imageFileName);
         driver.findElement(replyPage.image).click();
         driver.findElement(replyPage.imagePath).sendKeys(imagepath);
         driver.sleep(2 * 1000);
@@ -135,6 +137,21 @@ let setPass = async function (driver, pass, repass, status, sucMsg, errorMsg) {
     }
 }
 
+let activeUser = function (user, done) {
+    MongoClient.connect(app.mongodbUrl, function (err, db) {
+        assert.equal(null, err);
+        console.log("Connected correctly to server");
+        let collection = db.collection("users")
+        // active user;
+
+        console.log("will active the user", user)
+        collection.updateOne({ name: `${user}` }, { $set: { "active": true } }, function (err, docs) {
+            console.log(err, docs.result)
+        })
+        db.close(done);
+    });
+}
+
 
 
 exports.userRegister = userRegister;
@@ -142,5 +159,6 @@ exports.userLogin = userLogin;
 exports.userForget = userForget;
 exports.userTopic = userTopic;
 exports.userReply = userReply;
-exports.setPass = setPass
+exports.setPass = setPass;
+exports.activeUser=activeUser
 

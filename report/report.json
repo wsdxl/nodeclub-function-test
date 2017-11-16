@@ -38,7 +38,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1355
+              "duration": 1697
             }
           },
           {
@@ -51,7 +51,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 8938
+              "duration": 33245
             }
           },
           {
@@ -64,7 +64,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 365
+              "duration": 421
             }
           },
           {
@@ -77,7 +77,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1171
+              "duration": 1306
             }
           },
           {
@@ -90,7 +90,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 6
+              "duration": 11
             }
           },
           {
@@ -99,11 +99,11 @@
             "line": 31,
             "name": "用刚才输出的密码'123123'可以成功登录",
             "match": {
-              "location": "Definitions\\register.js:42"
+              "location": "Definitions\\register.js:43"
             },
             "result": {
               "status": "passed",
-              "duration": 1101
+              "duration": 1230
             }
           },
           {
