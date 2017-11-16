@@ -2,13 +2,14 @@ let path = require('path');
 let fs = require('fs');
 
 let getImageFilesPath = function () {
-    return getrootPath() + "\\imagefiles"
+    // return getrootPath() + "\\imagefiles"
+    return path.join(getrootPath(),"imagefiles");
 }
 
 let getrootPath = function () {
     let rootpath = path.resolve(__dirname);
     while (rootpath) {
-        if (fs.existsSync(rootpath + '\\package.json')) {
+        if (fs.existsSync(path.join(rootpath,'package.json'))) {
             break;
         }
         rootpath = rootpath.substring(0, rootpath.lastIndexOf(path.sep));

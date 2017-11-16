@@ -70,7 +70,7 @@ let userTopic = async function (driver, tab, title, imageFileName, content, stat
         let imagepath = path.join(getImageFilesPath(), imageFileName);
         await driver.findElement(topicPage.image).click();
         await driver.findElement(topicPage.imagePath).sendKeys(imagepath);
-        await driver.sleep(2 * 1000);
+        return driver.sleep(2 * 1000);
     }
     await driver.findElement(topicPage.content).click();
     let text = await driver.findElement(topicPage.contentEditor);
