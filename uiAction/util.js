@@ -2,8 +2,10 @@ let path = require('path');
 let fs = require('fs');
 
 let getImageFilesPath = function () {
-    // return getrootPath() + "\\imagefiles"
     return path.join(getrootPath(),"imagefiles");
+}
+let getScreenshotsPath = function () {
+    return path.join(getrootPath(),"screenshots");
 }
 
 let getrootPath = function () {
@@ -21,3 +23,4 @@ console.log(getImageFilesPath());
 
 module.exports.getrootPath = getrootPath;
 module.exports.getImageFilesPath = getImageFilesPath;
+module.exports.getScreenshotsPath=getScreenshotsPath;

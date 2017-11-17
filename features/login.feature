@@ -26,6 +26,7 @@ Feature: login function test
     Scenario: 点击忘记密码跳转的页面是否正确
         When 导航到登录页面
         Then 点击忘记密码按钮，跳转的页面是否有'找回密码'标签
+
     
     @forget1    
     Scenario Outline: 忘记密码功能
