@@ -1,3 +1,5 @@
+
+
 // let path = require('path');
 
 
@@ -16,9 +18,12 @@ let userinfos = {
 
 // console.log(userinfos.a1.username,userinfos.a1.age)
 
-for (let key in userinfos){
+for (let key in userinfos) {
     // console.log(key,"====>",userinfos[key])
-    for(let k in userinfos[key] ){
-        console.log(key,"====>",k,"----",userinfos[key][k])
+    for (let k in userinfos[key]) {
+        // console.log(key, "====>", k, "----", userinfos[key][k])
     }
 }
+
+let time =new Date().toLocaleTimeString();
+console.log(time);
