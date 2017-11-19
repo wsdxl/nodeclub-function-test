@@ -1,23 +1,23 @@
 let { defineSupportCode } = require('cucumber');
 let fs = require('fs');
-let { getImageFilesPath } = require('../../uiAction/util');
-let { getScreenshotsPath } = require('../../uiAction/util');
+let mkdirp = require('mkdirp');
+let path = require('path');
+let { getrootPath } = require('../../uiAction/util');
 defineSupportCode(function ({ Before, After }) {
     Before(async function () {
         await this.driver.manage().window().maximize();
     })
-    // After(async function (testcase) {
-    //     await this.driver.takeScreenshot().then(function (imagedata) {
-    //         fs.writeFileSync(getScreenshotsPath() + '/' + day + '.png', imagedata, 'base64');
-    //     })
-
-    //     return this.driver.quit();
-    // })
     After(async function (testcase) {
-        console.log(testcase.result.status)
+        let dirname = new Date().toLocaleDateString();
+        let filename = new Date().toLocaleTimeString().replace(/:/g, '_');
+        console.log(dirname, filename);
+        let dirpath = path.join(getrootPath(), dirname);
+        if (!fs.existsSync(dirpath)) {
+            mkdirp(dirpath);
+        }
         if (testcase.result.status !== "passed") {
             await this.driver.takeScreenshot().then(function (imagedata) {
-                fs.writeFileSync(getScreenshotsPath() + '/' + testcase.pickle.name + '.png', imagedata, 'base64');
+                fs.writeFileSync(dirpath + '/' + filename + testcase.pickle.name + '.png', imagedata, 'base64');
             })
             return this.driver.quit();
         }

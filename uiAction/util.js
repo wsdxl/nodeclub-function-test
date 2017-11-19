@@ -1,12 +1,7 @@
 let path = require('path');
 let fs = require('fs');
-let date=new Date().toLocaleDateString();
-
 let getImageFilesPath = function () {
     return path.join(getrootPath(),"imagefiles");
-}
-let getScreenshotsPath = function () {
-    return path.join(getrootPath(),date);
 }
 
 let getrootPath = function () {
@@ -19,9 +14,9 @@ let getrootPath = function () {
     }
     return rootpath;
 }
-console.log(getrootPath());
-console.log(getScreenshotsPath());
+// console.log(getrootPath());
+// console.log(getImageFilesPath());
 
 module.exports.getrootPath = getrootPath;
 module.exports.getImageFilesPath = getImageFilesPath;
-module.exports.getScreenshotsPath=getScreenshotsPath;
+
