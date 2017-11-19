@@ -20,9 +20,9 @@ Feature: register function test
         Examples:
         |username|pass|re_pass|email|message|
         |123456|123|123|123456@qq.com|用户名或邮箱已被使用。|
-        |      |123|123|123@123.com|信息不完整。|
-        |1|1|1|1@1.com|用户名至少需要5个字符。|
-        |11111|123|123|123qq.com|邮箱不合法。|
+        # |      |123|123|123@123.com|信息不完整。|
+        # |1|1|1|1@1.com|用户名至少需要5个字符。|
+        # |11111|123|123|123qq.com|邮箱不合法。|
     @register3
     Scenario: 输入正确的注册信息，成功登录
         When 导航到注册页面

@@ -16,11 +16,14 @@ defineSupportCode(function ({ Before, After }) {
             mkdirp(dirpath);
         }
         if (testcase.result.status !== "passed") {
-            await this.driver.takeScreenshot().then(function (imagedata) {
-                fs.writeFileSync(dirpath + '/' + filename + testcase.pickle.name + '.png', imagedata, 'base64');
-            })
-            return this.driver.quit();
+            
+            let imagedata = await this.driver.takeScreenshot();
+            fs.writeFileSync(dirpath + '/' + filename + testcase.pickle.name + '.png', imagedata, 'base64');
         }
+            let imagedata1 = await this.driver.takeScreenshot();
+            this.attach(imagedata1, 'image/png');
+    
+        return this.driver.quit();
     })
 })
 

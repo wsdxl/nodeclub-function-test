@@ -19,8 +19,8 @@ Feature: login function test
         Then 用户名输入'<username>',密码输入'<pass>',点击登录按钮，得到错误提示'<message>'
         Examples:
         |username|pass|message|
-        ||123|信息不完整。|
-        |123|123|用户名或密码错误|
+        # ||123|信息不完整。|
+        # |123|123|用户名或密码错误|
 
     @forget
     Scenario: 点击忘记密码跳转的页面是否正确
@@ -36,9 +36,9 @@ Feature: login function test
         Examples:
         |email|message|
         |506615839@qq.com|我们已给您填写的电子邮箱发送了一封邮件，请在24小时内点击里面的链接来重置密码。|
-        ||邮箱不合法|
-        |123.com|邮箱不合法|
-        |123@qq.com|没有这个电子邮箱。|
+        # ||邮箱不合法|
+        # |123.com|邮箱不合法|
+        # |123@qq.com|没有这个电子邮箱。|
         
     
     
